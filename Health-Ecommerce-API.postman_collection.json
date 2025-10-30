@@ -1,0 +1,462 @@
+{
+  "info": {
+    "_postman_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "name": "Health E-Commerce API",
+    "description": "Collection untuk testing Health E-Commerce API\n\n## Setup\n1. Import collection ini ke Postman\n2. Buat environment dengan variable:\n   - `base_url`: http://localhost:3000\n   - `product_id`: (akan diisi otomatis saat create product)\n\n## Endpoints\n- Health Check\n- Get All Products (dengan filtering)\n- Get Product by ID\n- Create Product\n- Update Product\n- Delete Product",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response has success field\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.success).to.eql(true);",
+              "});",
+              "",
+              "pm.test(\"Server is running\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.include(\"running\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/health",
+          "host": ["{{base_url}}"],
+          "path": ["health"]
+        },
+        "description": "Endpoint untuk mengecek apakah server berjalan dengan baik"
+      },
+      "response": []
+    },
+    {
+      "name": "Get All Products",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response has success field\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.success).to.eql(true);",
+              "});",
+              "",
+              "pm.test(\"Response has data array\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.data).to.be.an('array');",
+              "});",
+              "",
+              "pm.test(\"Response has count field\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.count).to.be.a('number');",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/products",
+          "host": ["{{base_url}}"],
+          "path": ["api", "products"]
+        },
+        "description": "Mengambil semua produk dari database"
+      },
+      "response": []
+    },
+    {
+      "name": "Get Products - Filter by Category",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"All products are Vitamin category\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    jsonData.data.forEach(function(product) {",
+              "        pm.expect(product.category).to.eql(\"Vitamin\");",
+              "    });",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/products?category=Vitamin",
+          "host": ["{{base_url}}"],
+          "path": ["api", "products"],
+          "query": [
+            {
+              "key": "category",
+              "value": "Vitamin",
+              "description": "Filter by category: Vitamin, Supplement, Medical Equipment, Medicine, Other"
+            }
+          ]
+        },
+        "description": "Filter produk berdasarkan kategori"
+      },
+      "response": []
+    },
+    {
+      "name": "Get Products - Filter by Price Range",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/products?minPrice=50000&maxPrice=150000",
+          "host": ["{{base_url}}"],
+          "path": ["api", "products"],
+          "query": [
+            {
+              "key": "minPrice",
+              "value": "50000",
+              "description": "Minimum price"
+            },
+            {
+              "key": "maxPrice",
+              "value": "150000",
+              "description": "Maximum price"
+            }
+          ]
+        },
+        "description": "Filter produk berdasarkan range harga"
+      },
+      "response": []
+    },
+    {
+      "name": "Get Products - Search",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/products?search=vitamin",
+          "host": ["{{base_url}}"],
+          "path": ["api", "products"],
+          "query": [
+            {
+              "key": "search",
+              "value": "vitamin",
+              "description": "Search by name or description"
+            }
+          ]
+        },
+        "description": "Search produk berdasarkan nama atau deskripsi"
+      },
+      "response": []
+    },
+    {
+      "name": "Get Product by ID",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response has product data\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.success).to.eql(true);",
+              "    pm.expect(jsonData.data).to.be.an('object');",
+              "});",
+              "",
+              "pm.test(\"Product has required fields\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.data).to.have.property('name');",
+              "    pm.expect(jsonData.data).to.have.property('price');",
+              "    pm.expect(jsonData.data).to.have.property('category');",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/products/{{product_id}}",
+          "host": ["{{base_url}}"],
+          "path": ["api", "products", "{{product_id}}"]
+        },
+        "description": "Mengambil detail satu produk berdasarkan ID\n\n**Note:** Ganti `{{product_id}}` dengan ID produk yang valid"
+      },
+      "response": []
+    },
+    {
+      "name": "Create Product",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 201\", function () {",
+              "    pm.response.to.have.status(201);",
+              "});",
+              "",
+              "pm.test(\"Product created successfully\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.success).to.eql(true);",
+              "    pm.expect(jsonData.message).to.include(\"created\");",
+              "});",
+              "",
+              "pm.test(\"Save product ID to environment\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    if (jsonData.data && jsonData.data._id) {",
+              "        pm.environment.set(\"product_id\", jsonData.data._id);",
+              "        console.log(\"Product ID saved:\", jsonData.data._id);",
+              "    }",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Zinc Supplement 50mg\",\n  \"description\": \"Suplemen zinc untuk mendukung sistem kekebalan tubuh dan kesehatan kulit\",\n  \"category\": \"Supplement\",\n  \"price\": 75000,\n  \"stock\": 40,\n  \"manufacturer\": \"PT Mineral Health Indonesia\",\n  \"imageUrl\": \"/images/zinc.jpg\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/products",
+          "host": ["{{base_url}}"],
+          "path": ["api", "products"]
+        },
+        "description": "Membuat produk baru\n\n**Required fields:**\n- name\n- description\n- category (Vitamin, Supplement, Medical Equipment, Medicine, Other)\n- price\n- stock\n- manufacturer"
+      },
+      "response": []
+    },
+    {
+      "name": "Update Product",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Product updated successfully\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.success).to.eql(true);",
+              "    pm.expect(jsonData.message).to.include(\"updated\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"price\": 85000,\n  \"stock\": 50\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/products/{{product_id}}",
+          "host": ["{{base_url}}"],
+          "path": ["api", "products", "{{product_id}}"]
+        },
+        "description": "Update data produk\n\nBisa update sebagian field saja (partial update)\n\n**Note:** Ganti `{{product_id}}` dengan ID produk yang valid"
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Product",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Product deleted successfully\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.success).to.eql(true);",
+              "    pm.expect(jsonData.message).to.include(\"deleted\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/products/{{product_id}}",
+          "host": ["{{base_url}}"],
+          "path": ["api", "products", "{{product_id}}"]
+        },
+        "description": "Menghapus produk dari database\n\n**Note:** Ganti `{{product_id}}` dengan ID produk yang valid"
+      },
+      "response": []
+    },
+    {
+      "name": "Error - Get Product Not Found",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 404\", function () {",
+              "    pm.response.to.have.status(404);",
+              "});",
+              "",
+              "pm.test(\"Error message displayed\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.success).to.eql(false);",
+              "    pm.expect(jsonData.message).to.include(\"not found\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/products/507f1f77bcf86cd799439011",
+          "host": ["{{base_url}}"],
+          "path": ["api", "products", "507f1f77bcf86cd799439011"]
+        },
+        "description": "Test error handling ketika produk tidak ditemukan"
+      },
+      "response": []
+    },
+    {
+      "name": "Error - Invalid Product ID",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 404 or 500\", function () {",
+              "    pm.expect(pm.response.code).to.be.oneOf([404, 500]);",
+              "});",
+              "",
+              "pm.test(\"Error response\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.success).to.eql(false);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/products/invalid-id",
+          "host": ["{{base_url}}"],
+          "path": ["api", "products", "invalid-id"]
+        },
+        "description": "Test error handling untuk ID yang tidak valid"
+      },
+      "response": []
+    },
+    {
+      "name": "Error - Create Product Missing Fields",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 400\", function () {",
+              "    pm.response.to.have.status(400);",
+              "});",
+              "",
+              "pm.test(\"Validation error message\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.success).to.eql(false);",
+              "    pm.expect(jsonData.message).to.exist;",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Test Product\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/products",
+          "host": ["{{base_url}}"],
+          "path": ["api", "products"]
+        },
+        "description": "Test validasi ketika field required tidak diisi"
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3000",
+      "type": "string"
+    },
+    {
+      "key": "product_id",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}
+

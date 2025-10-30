@@ -1,0 +1,541 @@
+openapi: 3.0.0
+
+info:
+  title: Health E-Commerce API
+  description: |
+    API untuk toko online produk kesehatan (vitamin, suplemen, alat medis, obat-obatan)
+
+    ## Fitur Utama
+    - CRUD operations untuk produk kesehatan
+    - Filter produk berdasarkan kategori dan harga
+    - Search produk berdasarkan nama atau deskripsi
+    - Error handling yang comprehensive
+
+    ## Base URL
+    - Development: http://localhost:3000
+    - Production: https://api.healthshop.com
+
+    ## Authentication
+    Saat ini API belum menggunakan authentication. Akan ditambahkan di modul selanjutnya.
+  version: 1.0.0
+  contact:
+    name: API Support
+    email: support@healthshop.com
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: http://localhost:3000
+    description: Development server
+  - url: https://api.healthshop.com
+    description: Production server (coming soon)
+
+tags:
+  - name: Health Check
+    description: Endpoint untuk mengecek status server
+  - name: Products
+    description: Endpoint untuk manajemen produk kesehatan
+
+paths:
+  /health:
+    get:
+      tags:
+        - Health Check
+      summary: Health check endpoint
+      description: Mengecek apakah server berjalan dengan baik
+      operationId: healthCheck
+      responses:
+        "200":
+          description: Server is running
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Server is running
+                  timestamp:
+                    type: string
+                    format: date-time
+                    example: "2024-03-20T10:30:00.000Z"
+
+  /api/products:
+    get:
+      tags:
+        - Products
+      summary: Get all products
+      description: |
+        Mengambil daftar semua produk kesehatan yang aktif
+
+        Mendukung filtering berdasarkan:
+        - Kategori produk
+        - Range harga (minimum dan maksimum)
+        - Search keyword (mencari di nama dan deskripsi)
+      operationId: getAllProducts
+      parameters:
+        - name: category
+          in: query
+          description: Filter by product category
+          required: false
+          schema:
+            type: string
+            enum:
+              - Vitamin
+              - Supplement
+              - Medical Equipment
+              - Medicine
+              - Other
+          example: Vitamin
+        - name: minPrice
+          in: query
+          description: Minimum price filter
+          required: false
+          schema:
+            type: number
+            minimum: 0
+          example: 50000
+        - name: maxPrice
+          in: query
+          description: Maximum price filter
+          required: false
+          schema:
+            type: number
+            minimum: 0
+          example: 150000
+        - name: search
+          in: query
+          description: Search keyword (searches in name and description)
+          required: false
+          schema:
+            type: string
+          example: vitamin
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  count:
+                    type: integer
+                    description: Number of products returned
+                    example: 4
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Product"
+              examples:
+                all_products:
+                  summary: Get all products
+                  value:
+                    success: true
+                    count: 10
+                    data:
+                      - _id: "507f1f77bcf86cd799439011"
+                        name: "Vitamin C 1000mg"
+                        description: "Suplemen vitamin C untuk meningkatkan daya tahan tubuh"
+                        category: "Vitamin"
+                        price: 85000
+                        stock: 50
+                        imageUrl: "/images/vitamin-c.jpg"
+                        manufacturer: "PT Sehat Sejahtera"
+                        isActive: true
+                        createdAt: "2024-03-20T10:00:00.000Z"
+                        updatedAt: "2024-03-20T10:00:00.000Z"
+                filtered_by_category:
+                  summary: Filtered by category
+                  value:
+                    success: true
+                    count: 4
+                    data:
+                      - _id: "507f1f77bcf86cd799439011"
+                        name: "Vitamin C 1000mg"
+                        category: "Vitamin"
+                        price: 85000
+        "500":
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+    post:
+      tags:
+        - Products
+      summary: Create new product
+      description: |
+        Membuat produk baru dalam database
+
+        **Note:** Endpoint ini akan dilindungi dengan authentication di modul selanjutnya (Admin only)
+      operationId: createProduct
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProductInput"
+            examples:
+              vitamin:
+                summary: Create vitamin product
+                value:
+                  name: "Vitamin D3 2000 IU"
+                  description: "Suplemen vitamin D untuk kesehatan tulang"
+                  category: "Vitamin"
+                  price: 120000
+                  stock: 30
+                  manufacturer: "PT Sehat Alami"
+                  imageUrl: "/images/vitamin-d.jpg"
+              supplement:
+                summary: Create supplement product
+                value:
+                  name: "Omega-3 Fish Oil"
+                  description: "Suplemen minyak ikan untuk kesehatan jantung"
+                  category: "Supplement"
+                  price: 200000
+                  stock: 25
+                  manufacturer: "PT Nutri Health"
+      responses:
+        "201":
+          description: Product created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Product created successfully
+                  data:
+                    $ref: "#/components/schemas/Product"
+        "400":
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              examples:
+                missing_required_fields:
+                  summary: Missing required fields
+                  value:
+                    success: false
+                    message: "Product name is required, Price is required"
+                invalid_category:
+                  summary: Invalid category
+                  value:
+                    success: false
+                    message: "category: is not a valid enum value"
+
+  /api/products/{id}:
+    get:
+      tags:
+        - Products
+      summary: Get product by ID
+      description: Mengambil detail satu produk berdasarkan ID
+      operationId: getProductById
+      parameters:
+        - name: id
+          in: path
+          description: Product ID (MongoDB ObjectId)
+          required: true
+          schema:
+            type: string
+            pattern: '^[a-f\d]{24}$'
+          example: "507f1f77bcf86cd799439011"
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    $ref: "#/components/schemas/Product"
+        "404":
+          description: Product not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                success: false
+                message: Product not found
+        "500":
+          description: Server error (e.g., invalid ID format)
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+    put:
+      tags:
+        - Products
+      summary: Update product
+      description: |
+        Update produk berdasarkan ID
+
+        Mendukung partial update (hanya field yang diubah)
+
+        **Note:** Endpoint ini akan dilindungi dengan authentication di modul selanjutnya (Admin only)
+      operationId: updateProduct
+      parameters:
+        - name: id
+          in: path
+          description: Product ID (MongoDB ObjectId)
+          required: true
+          schema:
+            type: string
+            pattern: '^[a-f\d]{24}$'
+          example: "507f1f77bcf86cd799439011"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProductInput"
+            examples:
+              partial_update:
+                summary: Partial update (price and stock only)
+                value:
+                  price: 95000
+                  stock: 45
+              full_update:
+                summary: Full update
+                value:
+                  name: "Vitamin C 1000mg (Updated)"
+                  description: "Suplemen vitamin C untuk meningkatkan daya tahan tubuh - Formula baru"
+                  category: "Vitamin"
+                  price: 95000
+                  stock: 45
+                  manufacturer: "PT Sehat Sejahtera"
+                  imageUrl: "/images/vitamin-c-new.jpg"
+      responses:
+        "200":
+          description: Product updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Product updated successfully
+                  data:
+                    $ref: "#/components/schemas/Product"
+        "404":
+          description: Product not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "400":
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+    delete:
+      tags:
+        - Products
+      summary: Delete product
+      description: |
+        Hapus produk dari database berdasarkan ID
+
+        **Note:** Endpoint ini akan dilindungi dengan authentication di modul selanjutnya (Admin only)
+      operationId: deleteProduct
+      parameters:
+        - name: id
+          in: path
+          description: Product ID (MongoDB ObjectId)
+          required: true
+          schema:
+            type: string
+            pattern: '^[a-f\d]{24}$'
+          example: "507f1f77bcf86cd799439011"
+      responses:
+        "200":
+          description: Product deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Product deleted successfully
+                  data:
+                    type: object
+                    example: {}
+        "404":
+          description: Product not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                success: false
+                message: Product not found
+
+components:
+  schemas:
+    Product:
+      type: object
+      required:
+        - _id
+        - name
+        - description
+        - category
+        - price
+        - stock
+        - manufacturer
+        - isActive
+        - createdAt
+        - updatedAt
+      properties:
+        _id:
+          type: string
+          description: MongoDB ObjectId
+          example: "507f1f77bcf86cd799439011"
+        name:
+          type: string
+          description: Product name
+          maxLength: 100
+          example: "Vitamin C 1000mg"
+        description:
+          type: string
+          description: Product description
+          example: "Suplemen vitamin C untuk meningkatkan daya tahan tubuh dan melindungi sel dari radikal bebas"
+        category:
+          type: string
+          description: Product category
+          enum:
+            - Vitamin
+            - Supplement
+            - Medical Equipment
+            - Medicine
+            - Other
+          example: "Vitamin"
+        price:
+          type: number
+          description: Product price in IDR
+          minimum: 0
+          example: 85000
+        stock:
+          type: integer
+          description: Available stock quantity
+          minimum: 0
+          example: 50
+        imageUrl:
+          type: string
+          description: Product image URL
+          default: "/images/default-product.jpg"
+          example: "/images/vitamin-c.jpg"
+        manufacturer:
+          type: string
+          description: Manufacturer name
+          example: "PT Sehat Sejahtera"
+        isActive:
+          type: boolean
+          description: Product active status
+          default: true
+          example: true
+        createdAt:
+          type: string
+          format: date-time
+          description: Product creation timestamp
+          example: "2024-03-20T10:00:00.000Z"
+        updatedAt:
+          type: string
+          format: date-time
+          description: Product last update timestamp
+          example: "2024-03-20T10:00:00.000Z"
+
+    ProductInput:
+      type: object
+      required:
+        - name
+        - description
+        - category
+        - price
+        - stock
+        - manufacturer
+      properties:
+        name:
+          type: string
+          description: Product name
+          maxLength: 100
+          example: "Vitamin C 1000mg"
+        description:
+          type: string
+          description: Product description
+          example: "Suplemen vitamin C untuk meningkatkan daya tahan tubuh"
+        category:
+          type: string
+          description: Product category
+          enum:
+            - Vitamin
+            - Supplement
+            - Medical Equipment
+            - Medicine
+            - Other
+          example: "Vitamin"
+        price:
+          type: number
+          description: Product price in IDR
+          minimum: 0
+          example: 85000
+        stock:
+          type: integer
+          description: Available stock quantity
+          minimum: 0
+          example: 50
+        imageUrl:
+          type: string
+          description: Product image URL (optional)
+          example: "/images/vitamin-c.jpg"
+        manufacturer:
+          type: string
+          description: Manufacturer name
+          example: "PT Sehat Sejahtera"
+
+    Error:
+      type: object
+      required:
+        - success
+        - message
+      properties:
+        success:
+          type: boolean
+          description: Operation success status
+          example: false
+        message:
+          type: string
+          description: Error message
+          example: "Product not found"
+        stack:
+          type: string
+          description: Error stack trace (only in development mode)
+          example: "Error: Product not found\n    at productController.getProductById..."
+
