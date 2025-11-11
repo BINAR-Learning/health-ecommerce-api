@@ -1,4 +1,4 @@
-# 🚀 health-ecommerce-api
+# health-ecommerce-api
 
 > **RESTful Backend API dengan Express.js untuk Health E-Commerce**
 
@@ -12,16 +12,16 @@ Complete REST API backend untuk Health E-Commerce dengan CRUD operations, middle
 
 ---
 
-## 📦 Apa yang Ada di Repository Ini?
+## Apa yang Ada di Repository Ini?
 
 Repository ini berisi **2 versi project**:
 
 ```
 health-ecommerce-api/
 ├── README.md (Ini file yang kamu baca)
-├── Health-Ecommerce-API.postman_collection.json  # 📮 Postman tests
-├── swagger.yaml                                    # 📄 API documentation
-├── starter-project/     # 📝 Untuk practice (dengan TODO)
+├── Health-Ecommerce-API.postman_collection.json  # Postman tests
+├── swagger.yaml                                    # API documentation
+├── starter-project/     # Untuk practice (dengan TODO)
 │   ├── README.md
 │   ├── package.json
 │   ├── server.js (with TODOs)
@@ -31,7 +31,7 @@ health-ecommerce-api/
 │   ├── models/
 │   ├── routes/
 │   └── scripts/
-└── finished-project/    # ✅ Complete REST API
+└── finished-project/    # Complete REST API
     ├── README.md
     ├── package.json
     ├── server.js (complete)
@@ -50,7 +50,7 @@ health-ecommerce-api/
 
 ---
 
-## 🚀 Quick Start (Untuk Newbie)
+## Quick Start (Untuk Newbie)
 
 ### Option 1: Practice dengan Starter Project
 
@@ -119,17 +119,17 @@ npm run dev
 
 ---
 
-## 🎯 Apa yang Akan Kamu Pelajari?
+## Apa yang Akan Kamu Pelajari?
 
 **Modul 3** melanjutkan dari Modul 2 (Database) dengan membangun REST API!
 
 ### Konsep yang Dipelajari:
 
-- ✅ **REST API Principles** - Stateless, Resource-based, HTTP methods
-- ✅ **Express.js** - Routing, middleware, error handling
-- ✅ **CRUD Operations** - Create, Read, Update, Delete dengan MongoDB
-- ✅ **API Testing** - Postman collections dengan automated tests
-- ✅ **API Documentation** - OpenAPI/Swagger interactive docs
+- **REST API Principles** - Stateless, Resource-based, HTTP methods
+- **Express.js** - Routing, middleware, error handling
+- **CRUD Operations** - Create, Read, Update, Delete dengan MongoDB
+- **API Testing** - Postman collections dengan automated tests
+- **API Documentation** - OpenAPI/Swagger interactive docs
 
 ### Apa yang Dibangun:
 
@@ -142,26 +142,26 @@ npm run dev
 
 ---
 
-## 📁 Struktur Starter Project
+## Struktur Starter Project
 
 ```
 starter-project/
 ├── README.md              # Setup guide
 ├── package.json           # Dependencies
-├── server.js             # ⚠️ TODO: Server setup
+├── server.js             # TODO: Server setup
 ├── config/
-│   └── database.js       # ✅ MongoDB connection (ready!)
+│   └── database.js       # MongoDB connection (ready!)
 ├── controllers/
-│   └── productController.js  # ⚠️ TODO: Business logic
+│   └── productController.js  # TODO: Business logic
 ├── middleware/
-│   ├── errorHandler.js   # ✅ Error handler (ready!)
-│   └── logger.js         # ✅ Request logger (ready!)
+│   ├── errorHandler.js   # Error handler (ready!)
+│   └── logger.js         # Request logger (ready!)
 ├── models/
-│   └── Product.js        # ✅ Mongoose schema (ready!)
+│   └── Product.js        # Mongoose schema (ready!)
 ├── routes/
-│   └── productRoutes.js  # ⚠️ TODO: Route definitions
+│   └── productRoutes.js  # TODO: Route definitions
 └── scripts/
-    └── seed.js           # ✅ Database seeding (ready!)
+    └── seed.js           # Database seeding (ready!)
 ```
 
 **TODOs:**
@@ -172,40 +172,40 @@ starter-project/
 
 ---
 
-## 📁 Struktur Finished Project
+## Struktur Finished Project
 
 ```
 finished-project/
 ├── README.md              # Setup + explanations
 ├── package.json           # Dependencies
-├── server.js             # ✅ Complete Express server
+├── server.js             # Complete Express server
 ├── config/
-│   └── database.js       # ✅ MongoDB connection
+│   └── database.js       # MongoDB connection
 ├── controllers/
-│   └── productController.js  # ✅ All 5 functions (with filtering!)
+│   └── productController.js  # All 5 functions (with filtering!)
 ├── middleware/
-│   ├── errorHandler.js   # ✅ Global error handler
-│   └── logger.js         # ✅ Morgan logger
+│   ├── errorHandler.js   # Global error handler
+│   └── logger.js         # Morgan logger
 ├── models/
-│   └── Product.js        # ✅ Product schema with validations
+│   └── Product.js        # Product schema with validations
 ├── routes/
-│   └── productRoutes.js  # ✅ All 5 routes mounted
+│   └── productRoutes.js  # All 5 routes mounted
 └── scripts/
-    └── seed.js           # ✅ Seeds 10 sample products
+    └── seed.js           # Seeds 10 sample products
 ```
 
 **All implemented:**
 
-- ✅ 6 endpoints (health + 5 CRUD)
-- ✅ Filtering, sorting, searching
-- ✅ Error handling with custom classes
-- ✅ Request logging with Morgan
-- ✅ Postman collection
-- ✅ Swagger documentation
+- 6 endpoints (health + 5 CRUD)
+- Filtering, sorting, searching
+- Error handling with custom classes
+- Request logging with Morgan
+- Postman collection
+- Swagger documentation
 
 ---
 
-## 🧪 API Endpoints
+## API Endpoints
 
 ### Available Endpoints:
 
@@ -233,7 +233,7 @@ GET /api/products?category=Vitamin&minPrice=50000&maxPrice=150000
 
 ---
 
-## 🧪 Testing
+## Testing
 
 ### Import Postman Collection
 
@@ -272,7 +272,7 @@ curl -X POST http://localhost:3000/api/products \
 
 ---
 
-## 📖 API Documentation
+## API Documentation
 
 **Swagger UI available at:**
 
@@ -286,45 +286,45 @@ File: `swagger.yaml` (OpenAPI 3.0 specification)
 
 ---
 
-## 🔗 Hubungan dengan Modul Lain
+## Hubungan dengan Modul Lain
 
 **Dari Modul 1 (OOP):**
 
-- ✅ Service layer pattern
-- ✅ Async/await untuk database operations
+- Service layer pattern
+- Async/await untuk database operations
 
 **Dari Modul 2 (Database):**
 
-- ✅ Product model dengan Mongoose
-- ✅ Database connection
-- ✅ CRUD operations
+- Product model dengan Mongoose
+- Database connection
+- CRUD operations
 
-**Modul 3 (This!)** → Builds REST API
+**Modul 3 (This!)** - Builds REST API
 
-- 🆕 Express server setup
-- 🆕 Routing & middleware
-- 🆕 Error handling & logging
-- 🆕 API testing & documentation
+- Express server setup
+- Routing & middleware
+- Error handling & logging
+- API testing & documentation
 
 **Ke Modul 4 (Auth):**
 
-- → Routes akan di-protect dengan JWT
-- → Admin-only endpoints
-- → Security middleware
+- Routes akan di-protect dengan JWT
+- Admin-only endpoints
+- Security middleware
 
 **Ke Modul 5 (Integration):**
 
-- → API extended dengan AI chatbot
-- → Payment gateway integration
-- → External services
+- API extended dengan AI chatbot
+- Payment gateway integration
+- External services
 
 **One Health E-Commerce system, built progressively!**
 
 ---
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
-### ❌ "Cannot find module 'express'"
+### "Cannot find module 'express'"
 
 **Solusi:**
 
@@ -332,7 +332,7 @@ File: `swagger.yaml` (OpenAPI 3.0 specification)
 npm install
 ```
 
-### ❌ "MongoDB connection failed"
+### "MongoDB connection failed"
 
 **Solusi:**
 
@@ -346,7 +346,7 @@ mongosh
 # Linux: sudo systemctl start mongod
 ```
 
-### ❌ "Port 3000 already in use"
+### "Port 3000 already in use"
 
 **Solusi:**
 
@@ -356,7 +356,7 @@ mongosh
 PORT=3001
 ```
 
-### ❌ "Validation error"
+### "Validation error"
 
 **Solusi:**
 
@@ -366,7 +366,7 @@ PORT=3001
 
 ---
 
-## 💡 Tips Sukses
+## Tips Sukses
 
 1. **Start dengan starter** - Practice makes perfect
 2. **Test incremental** - Test each endpoint after creating
@@ -378,7 +378,7 @@ PORT=3001
 
 ---
 
-## 📚 Resources
+## Resources
 
 **Documentation:**
 
@@ -395,25 +395,25 @@ PORT=3001
 
 ---
 
-## 🚀 Next Steps
+## Next Steps
 
 After completing this module:
 
-1. ✅ **Test all 6 endpoints** dengan Postman
-2. ✅ **Review Swagger docs** di /api-docs
-3. ➡️ **Modul 4** - Add authentication & security
-4. ➡️ **Modul 5** - External integrations (AI, Payment)
+1. **Test all 6 endpoints** dengan Postman
+2. **Review Swagger docs** di /api-docs
+3. **Modul 4** - Add authentication & security
+4. **Modul 5** - External integrations (AI, Payment)
 
 ---
 
-**Happy Coding! 🚀**
+**Happy Coding!**
 
 _Modul 3 - REST API dengan Express.js_  
 _Part of Health E-Commerce Backend Series_
 
 ---
 
-**📁 Repository Info:**
+**Repository Info:**
 
 - **Name:** `health-ecommerce-api`
 - **Type:** REST API Backend

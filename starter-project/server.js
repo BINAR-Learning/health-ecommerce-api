@@ -1,5 +1,5 @@
 /**
- * ⚠️ FILE INI PERLU DILENGKAPI
+ *  FILE INI PERLU DILENGKAPI
  *
  * Health E-Commerce API Server
  * Entry point untuk aplikasi Express.js
@@ -80,11 +80,10 @@
 
 /* Expected output:
   ╔════════════════════════════════════════╗
-  ║  🚀 Server running on port 3000       ║
-  ║  🏥 Health: http://localhost:3000/health     ║
+  ║   Server running on port 3000       ║
+  ║   Health: http://localhost:3000/health     ║
   ╚════════════════════════════════════════╝
 */
 
 // TODO: Handle unhandled promise rejections
 // Hint: process.on('unhandledRejection', (err) => { ... });
-

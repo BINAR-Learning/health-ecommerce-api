@@ -1,23 +1,23 @@
-# ✅ Finished Project - Health E-Commerce API
+# Finished Project - Health E-Commerce API
 
-## 📝 Deskripsi
+## Deskripsi
 
 Ini adalah **finished project** yang berisi implementasi lengkap dari Health E-Commerce API. Project ini bisa digunakan sebagai referensi untuk membandingkan hasil pengerjaan kamu dengan solusi yang benar.
 
-## 🎯 Fitur Lengkap
+## Fitur Lengkap
 
 Project ini mengimplementasikan:
 
-- ✅ **RESTful API** dengan 5 endpoint CRUD
-- ✅ **MongoDB Integration** dengan Mongoose ODM
-- ✅ **Filtering & Search** produk berdasarkan kategori, harga, dan keyword
-- ✅ **Error Handling** yang comprehensive
-- ✅ **Request Logging** dengan Morgan
-- ✅ **Input Validation** dengan Mongoose schema validation
-- ✅ **Environment Configuration** dengan dotenv
-- ✅ **Database Seeding** untuk data sample
+- **RESTful API** dengan 5 endpoint CRUD
+- **MongoDB Integration** dengan Mongoose ODM
+- **Filtering & Search** produk berdasarkan kategori, harga, dan keyword
+- **Error Handling** yang comprehensive
+- **Request Logging** dengan Morgan
+- **Input Validation** dengan Mongoose schema validation
+- **Environment Configuration** dengan dotenv
+- **Database Seeding** untuk data sample
 
-## 📂 Struktur Project
+## Struktur Project
 
 ```
 finished-project/
@@ -41,15 +41,15 @@ finished-project/
 └── README.md
 ```
 
-## 🔧 Setup & Instalasi
+## Setup & Instalasi
 
-### 1️⃣ Install Dependencies
+### Install Dependencies
 
 ```bash
 npm install
 ```
 
-### 2️⃣ Setup Environment Variables
+### Setup Environment Variables
 
 Copy file `.env.example` menjadi `.env`:
 
@@ -69,7 +69,7 @@ PORT=3000
 MONGODB_URI=mongodb://localhost:27017/health-ecommerce
 ```
 
-### 3️⃣ Start MongoDB
+### Start MongoDB
 
 ```bash
 # Windows (MongoDB service)
@@ -85,7 +85,7 @@ sudo systemctl start mongod
 mongod
 ```
 
-### 4️⃣ Seed Database
+### Seed Database
 
 ```bash
 npm run seed
@@ -94,19 +94,19 @@ npm run seed
 **Output yang diharapkan:**
 
 ```
-✅ MongoDB connected successfully
-🗑️  Existing products deleted
-✅ 10 sample products inserted
+ MongoDB connected successfully
+  Existing products deleted
+ 10 sample products inserted
 
-📋 Sample Product IDs:
+ Sample Product IDs:
    - Vitamin C 1000mg: 507f1f77bcf86cd799439011
    - Vitamin D3 2000 IU: 507f191e810c19729de860ea
    - Omega-3 Fish Oil: 507f191e810c19729de860eb
 
-🎉 Database seeded successfully!
+ Database seeded successfully!
 ```
 
-### 5️⃣ Start Server
+### Start Server
 
 ```bash
 # Development mode (dengan auto-reload)
@@ -119,17 +119,17 @@ npm start
 **Output yang diharapkan:**
 
 ```
-✅ MongoDB connected successfully
+ MongoDB connected successfully
 
   ╔════════════════════════════════════════╗
-  ║  🚀 Server running on port 3000       ║
-  ║  🏥 Health: http://localhost:3000/health     ║
+  ║   Server running on port 3000       ║
+  ║   Health: http://localhost:3000/health     ║
   ╚════════════════════════════════════════╝
 ```
 
-## 📡 API Endpoints
+##  API Endpoints
 
-### 1️⃣ Health Check
+### Health Check
 
 ```http
 GET /health
@@ -145,7 +145,7 @@ GET /health
 }
 ```
 
-### 2️⃣ Get All Products
+### Get All Products
 
 ```http
 GET /api/products
@@ -201,7 +201,7 @@ curl http://localhost:3000/api/products?category=Vitamin&maxPrice=100000
 }
 ```
 
-### 3️⃣ Get Product by ID
+### Get Product by ID
 
 ```http
 GET /api/products/:id
@@ -243,7 +243,7 @@ curl http://localhost:3000/api/products/507f1f77bcf86cd799439011
 }
 ```
 
-### 4️⃣ Create Product
+### Create Product
 
 ```http
 POST /api/products
@@ -310,7 +310,7 @@ curl -X POST http://localhost:3000/api/products \
 }
 ```
 
-### 5️⃣ Update Product
+### Update Product
 
 ```http
 PUT /api/products/:id
@@ -356,7 +356,7 @@ curl -X PUT http://localhost:3000/api/products/507f1f77bcf86cd799439011 \
 }
 ```
 
-### 6️⃣ Delete Product
+### Delete Product
 
 ```http
 DELETE /api/products/:id
@@ -387,7 +387,7 @@ curl -X DELETE http://localhost:3000/api/products/507f1f77bcf86cd799439011
 }
 ```
 
-## 🧪 Testing dengan Postman
+## Testing dengan Postman
 
 ### Import Collection
 
@@ -415,7 +415,7 @@ curl -X DELETE http://localhost:3000/api/products/507f1f77bcf86cd799439011
 7. **Delete Product** - Hapus produk
 8. **Get Product by ID** - Verify sudah terhapus (404)
 
-## 🔍 Perbedaan dengan Starter Project
+## Perbedaan dengan Starter Project
 
 | Aspek                              | Starter Project               | Finished Project                     |
 | ---------------------------------- | ----------------------------- | ------------------------------------ |
@@ -424,9 +424,9 @@ curl -X DELETE http://localhost:3000/api/products/507f1f77bcf86cd799439011
 | `controllers/productController.js` | Berisi TODO, perlu dilengkapi | 5 functions lengkap dengan filtering |
 | File lainnya                       | Sudah lengkap                 | Sama, sudah lengkap                  |
 
-## 💡 Konsep yang Diimplementasikan
+## Konsep yang Diimplementasikan
 
-### 1️⃣ Express Middleware Chain
+### Express Middleware Chain
 
 ```javascript
 Request
@@ -438,7 +438,7 @@ Request
   → Response
 ```
 
-### 2️⃣ MVC Pattern
+### MVC Pattern
 
 ```
 Models (Product.js)
@@ -450,7 +450,7 @@ Routes (productRoutes.js)
 Server (server.js)
 ```
 
-### 3️⃣ Error Handling Flow
+### Error Handling Flow
 
 ```javascript
 try {
@@ -460,7 +460,7 @@ try {
 }
 ```
 
-### 4️⃣ Query Building
+### Query Building
 
 ```javascript
 let query = { isActive: true };
@@ -471,7 +471,7 @@ if (minPrice) query.price = { ...query.price, $gte: minPrice };
 const products = await Product.find(query);
 ```
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Server tidak mau start
 
@@ -510,9 +510,9 @@ PORT=3001
 - Check category value harus salah satu dari: Vitamin, Supplement, Medical Equipment, Medicine, Other
 - Check case sensitivity (harus exact match)
 
-## 📊 Performance Tips
+## Performance Tips
 
-### 1️⃣ Database Indexing
+### Database Indexing
 
 Schema sudah include text index untuk search:
 
@@ -520,7 +520,7 @@ Schema sudah include text index untuk search:
 productSchema.index({ name: "text", description: "text" });
 ```
 
-### 2️⃣ Query Optimization
+### Query Optimization
 
 Batasi jumlah hasil:
 
@@ -534,7 +534,7 @@ Sort efisien dengan index:
 .sort({ createdAt: -1 })
 ```
 
-### 3️⃣ Lean Queries
+### Lean Queries
 
 Untuk read-only operations:
 
@@ -542,7 +542,7 @@ Untuk read-only operations:
 await Product.find().lean();
 ```
 
-## 🚀 Next Steps
+## Next Steps
 
 Setelah memahami finished project ini:
 
@@ -551,20 +551,20 @@ Setelah memahami finished project ini:
 3. **Lanjut ke Modul 4** - Authentication & Security
 4. **Deploy ke production** - Heroku, Vercel, atau Railway
 
-## 📚 Pembelajaran Kunci
+## Pembelajaran Kunci
 
 Dari finished project ini, kamu belajar:
 
-- ✅ Struktur project Express.js yang baik
-- ✅ Separation of concerns (MVC pattern)
-- ✅ RESTful API best practices
-- ✅ Error handling yang proper
-- ✅ Database operations dengan Mongoose
-- ✅ Query building dan filtering
-- ✅ Middleware usage
-- ✅ Environment configuration
+- Struktur project Express.js yang baik
+- Separation of concerns (MVC pattern)
+- RESTful API best practices
+- Error handling yang proper
+- Database operations dengan Mongoose
+- Query building dan filtering
+- Middleware usage
+- Environment configuration
 
-## 🎓 Challenge
+## Challenge
 
 Coba tambahkan fitur-fitur ini sendiri:
 
@@ -578,10 +578,8 @@ Coba tambahkan fitur-fitur ini sendiri:
 
 ---
 
-**🎉 Selamat! Project ini merupakan referensi lengkap implementasi REST API dengan Express.js**
+** Selamat! Project ini merupakan referensi lengkap implementasi REST API dengan Express.js**
 
 Gunakan project ini sebagai template untuk project-project selanjutnya.
 
-Happy Coding! 💻🚀
-
-
+Happy Coding!

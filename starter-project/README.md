@@ -1,51 +1,51 @@
-# 🏁 Starter Project - Health E-Commerce API
+# Starter Project - Health E-Commerce API
 
-## 📝 Deskripsi
+## Deskripsi
 
 Ini adalah **starter project** untuk pembelajaran Backend Development dengan Express.js. Project ini berisi struktur dasar aplikasi dengan beberapa bagian yang perlu kamu lengkapi sendiri sebagai latihan.
 
-## 🎯 Tujuan
+## Tujuan
 
 Dengan mengerjakan starter project ini, kamu akan:
 
-1. ✅ Memahami struktur project Express.js
-2. ✅ Membuat routes dan middleware sendiri
-3. ✅ Mengimplementasikan CRUD operations
-4. ✅ Menangani error dengan baik
-5. ✅ Testing API dengan Postman
+1.  Memahami struktur project Express.js
+2.  Membuat routes dan middleware sendiri
+3.  Mengimplementasikan CRUD operations
+4.  Menangani error dengan baik
+5.  Testing API dengan Postman
 
-## 📂 Struktur Folder
+## Struktur Folder
 
 ```
 starter-project/
 ├── config/
-│   └── database.js         # ✅ Sudah lengkap - Konfigurasi MongoDB
+│   └── database.js         #  Sudah lengkap - Konfigurasi MongoDB
 ├── controllers/
-│   └── productController.js # ⚠️ PERLU DILENGKAPI
+│   └── productController.js #  PERLU DILENGKAPI
 ├── models/
-│   └── Product.js          # ✅ Sudah lengkap - Schema produk
+│   └── Product.js          #  Sudah lengkap - Schema produk
 ├── routes/
-│   └── productRoutes.js    # ⚠️ PERLU DILENGKAPI
+│   └── productRoutes.js    #  PERLU DILENGKAPI
 ├── middleware/
-│   ├── errorHandler.js     # ✅ Sudah lengkap
-│   └── logger.js           # ✅ Sudah lengkap
+│   ├── errorHandler.js     #  Sudah lengkap
+│   └── logger.js           #  Sudah lengkap
 ├── scripts/
-│   └── seed.js            # ✅ Sudah lengkap - Data sample
-├── .env.example           # ✅ Template environment variables
-├── server.js              # ⚠️ PERLU DILENGKAPI
-├── package.json           # ✅ Sudah lengkap
+│   └── seed.js            #  Sudah lengkap - Data sample
+├── .env.example           #  Template environment variables
+├── server.js              #  PERLU DILENGKAPI
+├── package.json           #  Sudah lengkap
 └── README.md              # Ini file yang sedang kamu baca
 ```
 
-## 🔧 Setup & Instalasi
+## Setup & Instalasi
 
-### 1️⃣ Install Dependencies
+### Install Dependencies
 
 ```bash
 npm install
 ```
 
-### 2️⃣ Setup Environment Variables
+### Setup Environment Variables
 
 Copy file `.env.example` menjadi `.env`:
 
@@ -61,7 +61,7 @@ PORT=3000
 MONGODB_URI=mongodb://localhost:27017/health-ecommerce
 ```
 
-### 3️⃣ Start MongoDB
+### Start MongoDB
 
 Pastikan MongoDB berjalan di komputer kamu:
 
@@ -76,7 +76,7 @@ brew services start mongodb-community
 sudo systemctl start mongod
 ```
 
-### 4️⃣ Seed Database
+### Seed Database
 
 Isi database dengan data sample:
 
@@ -84,7 +84,7 @@ Isi database dengan data sample:
 npm run seed
 ```
 
-### 5️⃣ Start Development Server
+### Start Development Server
 
 ```bash
 npm run dev
@@ -92,22 +92,22 @@ npm run dev
 
 Server akan berjalan di `http://localhost:3000`
 
-## 📝 Tugas yang Perlu Dikerjakan
+## Tugas yang Perlu Dikerjakan
 
-### ⚠️ 1. Lengkapi `server.js`
+### 1. Lengkapi `server.js`
 
 File `server.js` adalah entry point aplikasi. Kamu perlu:
 
-- ✏️ Setup Express app
-- ✏️ Connect ke database
-- ✏️ Setup middleware (CORS, JSON parser, logger)
-- ✏️ Mount routes
-- ✏️ Setup error handler
-- ✏️ Start server
+- Setup Express app
+- Connect ke database
+- Setup middleware (CORS, JSON parser, logger)
+- Mount routes
+- Setup error handler
+- Start server
 
 **Hint:** Lihat contoh di finished-project untuk reference
 
-### ⚠️ 2. Lengkapi `routes/productRoutes.js`
+### 2. Lengkapi `routes/productRoutes.js`
 
 Buat routing untuk endpoint berikut:
 
@@ -119,7 +119,7 @@ Buat routing untuk endpoint berikut:
 
 **Hint:** Gunakan `express.Router()`
 
-### ⚠️ 3. Lengkapi `controllers/productController.js`
+### 3. Lengkapi `controllers/productController.js`
 
 Implementasikan fungsi-fungsi berikut:
 
@@ -174,7 +174,7 @@ Implementasikan fungsi-fungsi berikut:
 
 **Hint:** Gunakan try-catch dan `next(error)` untuk error handling
 
-## ✅ Checklist Pengerjaan
+## Checklist Pengerjaan
 
 Gunakan checklist ini untuk memastikan kamu sudah menyelesaikan semua tugas:
 
@@ -212,7 +212,7 @@ Gunakan checklist ini untuk memastikan kamu sudah menyelesaikan semua tugas:
 - [ ] Search by name berfungsi
 - [ ] Pagination implemented
 
-## 🧪 Testing API
+## Testing API
 
 ### Menggunakan Postman
 
@@ -266,7 +266,7 @@ curl -X PUT http://localhost:3000/api/products/PRODUCT_ID \
 curl -X DELETE http://localhost:3000/api/products/PRODUCT_ID
 ```
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Error: "Cannot find module 'express'"
 
@@ -287,7 +287,7 @@ curl -X DELETE http://localhost:3000/api/products/PRODUCT_ID
 
 **Solusi:** Pastikan struktur folder sudah benar dan semua file ada
 
-## 💡 Tips
+## Tips
 
 1. **Pahami konsep REST API** - Pelajari tentang HTTP methods, status codes, dan best practices
 2. **Kerjakan step by step** - Jangan skip langkah
@@ -296,14 +296,14 @@ curl -X DELETE http://localhost:3000/api/products/PRODUCT_ID
 5. **Gunakan Postman** - Lebih mudah untuk testing daripada cURL
 6. **Commit progress** - Commit setiap kali selesai satu fitur
 
-## 🔗 Referensi
+## Referensi
 
 - [Express.js Documentation](https://expressjs.com/)
 - [Mongoose Documentation](https://mongoosejs.com/)
 - [MongoDB Manual](https://docs.mongodb.com/manual/)
 - [Postman Learning Center](https://learning.postman.com/)
 
-## 🆘 Butuh Bantuan?
+##  Butuh Bantuan?
 
 Jika kamu stuck:
 
@@ -313,16 +313,16 @@ Jika kamu stuck:
 4. **Test incremental** - Test setiap function satu per satu, jangan sekaligus
 5. **Tanya mentor/instruktur** - Jangan ragu bertanya kalau stuck
 
-## 🎯 Tujuan Akhir
+## Tujuan Akhir
 
 Setelah menyelesaikan starter project ini, kamu harus bisa:
 
-- ✅ Menjalankan server Express.js
-- ✅ Membuat REST API dengan CRUD operations
-- ✅ Menghubungkan Express dengan MongoDB
-- ✅ Testing API dengan Postman
-- ✅ Handle errors dengan baik
+- Menjalankan server Express.js
+- Membuat REST API dengan CRUD operations
+- Menghubungkan Express dengan MongoDB
+- Testing API dengan Postman
+- Handle errors dengan baik
 
-**Selamat mengerjakan! 🚀**
+**Selamat mengerjakan! **
 
 Jika project kamu sudah berfungsi dengan baik, compare dengan `finished-project` untuk melihat implementasi lengkapnya.

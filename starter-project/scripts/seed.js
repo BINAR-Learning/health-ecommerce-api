@@ -112,25 +112,23 @@ const seedDatabase = async () => {
 
     // Delete existing products
     await Product.deleteMany();
-    console.log("🗑️  Existing products deleted");
+    console.log("  Existing products deleted");
 
     // Insert new products
     const createdProducts = await Product.insertMany(products);
-    console.log(`✅ ${createdProducts.length} sample products inserted`);
+    console.log(` ${createdProducts.length} sample products inserted`);
 
-    console.log("\n📋 Sample Product IDs:");
+    console.log("\n Sample Product IDs:");
     createdProducts.slice(0, 3).forEach((product) => {
       console.log(`   - ${product.name}: ${product._id}`);
     });
 
-    console.log("\n🎉 Database seeded successfully!");
+    console.log("\n Database seeded successfully!");
     process.exit(0);
   } catch (error) {
-    console.error("❌ Seeding error:", error);
+    console.error(" Seeding error:", error);
     process.exit(1);
   }
 };
 
 seedDatabase();
-
-

@@ -1,5 +1,5 @@
 /**
- * ⚠️ FILE INI PERLU DILENGKAPI
+ *  FILE INI PERLU DILENGKAPI
  *
  * Product Routes
  * Mendefinisikan endpoint untuk operasi CRUD produk
@@ -41,5 +41,3 @@
 
 // TODO: Export router
 // Hint: module.exports = router;
-
-

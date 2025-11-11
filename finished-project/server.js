@@ -39,11 +39,11 @@ try {
   const swaggerDocument = YAML.load(swaggerPath);
   app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
   console.log(
-    `📄 Swagger UI available at /api-docs (loaded from ${swaggerPath})`
+    ` Swagger UI available at /api-docs (loaded from ${swaggerPath})`
   );
 } catch (err) {
   console.warn(
-    "⚠️  Could not load swagger.yaml for Swagger UI:",
+    "  Could not load swagger.yaml for Swagger UI:",
     err.message || err
   );
 }
@@ -85,14 +85,14 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`
   ╔════════════════════════════════════════╗
-  ║  🚀 Server running on port ${PORT}       ║
-  ║  🏥 Health: http://localhost:${PORT}/health     ║
+  ║   Server running on port ${PORT}       ║
+  ║   Health: http://localhost:${PORT}/health     ║
   ╚════════════════════════════════════════╝
   `);
 });
 
 // Handle unhandled promise rejections
 process.on("unhandledRejection", (err) => {
-  console.error("❌ Unhandled Promise Rejection:", err);
+  console.error(" Unhandled Promise Rejection:", err);
   process.exit(1);
 });

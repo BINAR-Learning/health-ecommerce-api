@@ -1,5 +1,5 @@
 /**
- * ⚠️ FILE INI PERLU DILENGKAPI
+ *  FILE INI PERLU DILENGKAPI
  *
  * Product Controller
  * Menangani business logic untuk operasi CRUD produk
@@ -162,4 +162,3 @@ exports.deleteProduct = async (req, res, next) => {
     next(error);
   }
 };
-
