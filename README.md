@@ -74,8 +74,10 @@ cp .env.example .env
 # 6. Edit .env dengan text editor
 # Set MONGODB_URI dan JWT_SECRET
 
-# 7. Start MongoDB
-mongod
+# 7. Pastikan MongoDB Running
+# Cek dengan MongoDB Compass (connect ke localhost:27017)
+# Atau jalankan: mongosh
+# Jika belum running, start MongoDB service
 
 # 8. Seed database (isi dengan sample products)
 npm run seed
@@ -105,8 +107,8 @@ npm install
 cp .env.example .env
 # Edit dengan MongoDB URI
 
-# 6. Start MongoDB
-mongod
+# 6. Pastikan MongoDB Running
+# Cek dengan MongoDB Compass atau mongosh
 
 # 7. Seed database
 npm run seed
@@ -337,11 +339,15 @@ npm install
 **Solusi:**
 
 ```bash
-# Check MongoDB running
+# 1. Cek MongoDB status dengan Compass
+# Buka MongoDB Compass → Connect ke mongodb://localhost:27017
+# Jika berhasil connect = MongoDB sudah running
+
+# 2. Atau cek dengan mongosh
 mongosh
 
-# If not running:
-# Windows: Services → Start MongoDB
+# 3. Jika belum running, start service:
+# Windows: Services → Start MongoDB (atau MongoDB Compass bisa auto-start)
 # Mac: brew services start mongodb-community
 # Linux: sudo systemctl start mongod
 ```

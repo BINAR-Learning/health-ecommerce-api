@@ -79,10 +79,9 @@
 // 3. Log message yang informatif ketika server berjalan
 
 /* Expected output:
-  ╔════════════════════════════════════════╗
-  ║   Server running on port 3000       ║
-  ║   Health: http://localhost:3000/health     ║
-  ╚════════════════════════════════════════╝
+Server running on port 3000
+Health check: http://localhost:3000/health
+API Docs: http://localhost:3000/api-docs
 */
 
 // TODO: Handle unhandled promise rejections
